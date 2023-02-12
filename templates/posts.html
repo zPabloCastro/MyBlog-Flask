@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+
+{% block head %} 
+<title>Flask Course - POSTS</title>
+{% endblock %}
+
+{% block body %} 
+<div class="d-flex w-100 justify-content-between">
+    <h1 style="display: inline;">All Posts</h1>
+    <a class="btn btn-success p-3" href="./posts/add">+New Post</a>
+</div>
+<hr>
+<br>
+
+    {% for post in posts %}
+        <p class="h2">{{ post.title }}</p>
+
+        {% if post.author %}
+            <p class="h4">By: {{ post.author }}</p>
+        {% else %}
+        <p class="h4">By: N/A</p>
+        {% endif %}
+
+        <p style="white-space: pre-wrap;">{{ post.content }}</p>
+        <a class="btn btn-danger" href="./posts/delete/{{post.id}}">Delete</a>
+        <a class="btn btn-primary" href="./posts/edit/{{post.id}}">Edit</a>
+        <hr>
+        <br>
+    {% endfor %}
+
+{% endblock %}
